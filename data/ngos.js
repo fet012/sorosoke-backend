@@ -1,0 +1,168 @@
+const ngos = [
+  // SEXUAL HARASSMENT / GBV
+  {
+    id: 1,
+    name: "WARIF",
+    fullName: "Women At Risk International Foundation",
+    category: ["sexual_harassment"],
+    phone: "+234-812-345-6789",
+    email: "info@warif.org",
+    description: "Provides support for survivors of sexual and gender-based violence in Lagos.",
+  },
+  {
+    id: 2,
+    name: "FIDA Nigeria",
+    fullName: "International Federation of Women Lawyers Nigeria",
+    category: ["sexual_harassment", "workplace_abuse", "landlord_dispute"],
+    phone: "+234-804-345-6789",
+    email: "info@fidanigeria.org",
+    description: "Free legal aid for women facing harassment, abuse, and discrimination.",
+  },
+  {
+    id: 3,
+    name: "Project Alert",
+    fullName: "Project Alert on Violence Against Women",
+    category: ["sexual_harassment"],
+    phone: "+234-803-737-3688",
+    email: "info@projectalertnig.org",
+    description: "Shelter, counselling, and legal support for survivors of gender-based violence.",
+  },
+  {
+    id: 4,
+    name: "CLEEN Foundation",
+    fullName: "CLEEN Foundation",
+    category: ["sexual_harassment", "police_brutality"],
+    phone: "+234-802-345-9871",
+    email: "cleen@cleen.org",
+    description: "Promotes public safety, security, and justice for victims of abuse.",
+  },
+  {
+    id: 5,
+    name: "Mirabel Centre",
+    fullName: "Mirabel Centre Lagos",
+    category: ["sexual_harassment"],
+    phone: "+234-809-345-6789",
+    email: "info@mirabelcentre.org",
+    description: "Medical and psychosocial support for rape and sexual assault survivors.",
+  },
+
+  // POLICE BRUTALITY
+  {
+    id: 6,
+    name: "SERAP",
+    fullName: "Socio-Economic Rights and Accountability Project",
+    category: ["police_brutality", "corruption"],
+    phone: "+234-802-345-6789",
+    email: "info@serap.org",
+    description: "Holds government and security agencies accountable for rights violations.",
+  },
+  {
+    id: 7,
+    name: "Amnesty International Nigeria",
+    fullName: "Amnesty International Nigeria",
+    category: ["police_brutality"],
+    phone: "+234-803-345-6789",
+    email: "amnesty@amnesty.org.ng",
+    description: "Documents and fights against police brutality and extrajudicial killings.",
+  },
+  {
+    id: 8,
+    name: "TIER",
+    fullName: "The Initiative for Equal Rights",
+    category: ["police_brutality"],
+    phone: "+234-806-345-6789",
+    email: "info@theinitiativeforequalrights.org",
+    description: "Advocates for victims of rights violations by security agencies.",
+  },
+  {
+    id: 9,
+    name: "Enough is Enough Nigeria",
+    fullName: "Enough is Enough Nigeria",
+    category: ["police_brutality", "corruption"],
+    phone: "+234-807-345-6789",
+    email: "info@eienigeria.org",
+    description: "Civic advocacy against abuse of power and security force misconduct.",
+  },
+
+  // CORRUPTION
+  {
+    id: 10,
+    name: "Transparency International Nigeria",
+    fullName: "Transparency International Nigeria",
+    category: ["corruption"],
+    phone: "+234-805-678-9012",
+    email: "info@transparencyng.com",
+    description: "Fighting corruption through advocacy, research, and civic engagement.",
+  },
+  {
+    id: 11,
+    name: "BudgIT",
+    fullName: "BudgIT Foundation",
+    category: ["corruption"],
+    phone: "+234-801-234-5678",
+    email: "info@yourbudgit.com",
+    description: "Tracks government spending and exposes corruption in public funds.",
+  },
+
+  // WORKPLACE ABUSE
+  {
+    id: 12,
+    name: "NHRC",
+    fullName: "National Human Rights Commission",
+    category: ["workplace_abuse", "other"],
+    phone: "+234-809-876-5432",
+    email: "info@nhrc.gov.ng",
+    description: "Government body that handles human rights violations including workplace abuse.",
+  },
+  {
+    id: 13,
+    name: "Federation of Informal Workers",
+    fullName: "Federation of Informal Workers Organizations of Nigeria",
+    category: ["workplace_abuse"],
+    phone: "+234-808-765-4321",
+    email: "info@fiwon.org",
+    description: "Protects the rights of workers especially in the informal sector.",
+  },
+
+  // LASTMA EXTORTION
+  {
+    id: 14,
+    name: "Lagos State Public Complaints",
+    fullName: "Lagos State Public Complaints and Anti-Corruption Commission",
+    category: ["lastma_extortion"],
+    phone: "+234-700-225-5262",
+    email: "info@pcacc.lagosstate.gov.ng",
+    description: "Handles complaints against Lagos State government agencies including LASTMA.",
+  },
+  {
+    id: 15,
+    name: "SERAP",
+    fullName: "Socio-Economic Rights and Accountability Project",
+    category: ["lastma_extortion"],
+    phone: "+234-802-345-6789",
+    email: "info@serap.org",
+    description: "Takes legal action against extortion and abuse by government officials.",
+  },
+
+  // LANDLORD DISPUTE
+  {
+    id: 16,
+    name: "Legal Aid Council",
+    fullName: "Legal Aid Council of Nigeria",
+    category: ["landlord_dispute", "other"],
+    phone: "+234-805-345-6789",
+    email: "info@legalaidcouncil.gov.ng",
+    description: "Free legal representation for tenants facing unlawful eviction or disputes.",
+  },
+  {
+    id: 17,
+    name: "NBA Lagos Branch",
+    fullName: "Nigerian Bar Association Lagos Branch",
+    category: ["landlord_dispute"],
+    phone: "+234-802-987-6543",
+    email: "info@nbalagos.org",
+    description: "Connects tenants with qualified lawyers for property and housing disputes.",
+  },
+];
+
+module.exports = ngos;
