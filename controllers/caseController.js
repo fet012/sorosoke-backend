@@ -1,4 +1,5 @@
 const Case = require('../models/Case');
+const Complaint = require('../models/Complaint');
 
 // CREATE CASE
 const createCase = async (req, res) => {
@@ -84,10 +85,25 @@ const getCaseById = async (req, res) => {
   }
 };
 
-// GET USER'S OWN CASES
+// GET USER'S OWN CASES (Cases they created OR cases they have complaints in)
 const getMyCases = async (req, res) => {
   try {
-    const cases = await Case.find({ createdBy: req.user.id }).sort({ createdAt: -1 });
+    // Step 1: Find cases where the user is the creator
+    const casesCreatedByUser = await Case.find({ createdBy: req.user.id });
+    
+    // Step 2: Find all complaints by the user and get their caseIds
+    const userComplaints = await Complaint.find({ user: req.user.id }).select('caseId');
+    const caseIdsFromComplaints = userComplaints.map(c => c.caseId);
+    
+    // Step 3: Combine and find all unique cases
+    const allUserCaseIds = [
+      ...casesCreatedByUser.map(c => c._id),
+      ...caseIdsFromComplaints
+    ];
+    
+    const cases = await Case.find({ 
+      _id: { $in: allUserCaseIds } 
+    }).sort({ createdAt: -1 });
 
     res.status(200).json({
       success: true,

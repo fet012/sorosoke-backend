@@ -1,51 +1,68 @@
 const Complaint = require('../models/Complaint');
 const Case = require('../models/Case');
 
-
-
 // SUBMIT COMPLAINT
 const submitComplaint = async (req, res) => {
   try {
-
     console.log('📁 Files:', req.files);
     console.log('📝 Body:', req.body);
-    const { description, category, incidentDate, location, isAnonymous } = req.body;
+    
+    // Destructure caseId as well, as it's passed when adding an experience to an existing case
+    const { description, category, incidentDate, location, isAnonymous, caseId } = req.body;
 
-    // Step 1 — Find existing case for this category or create one
-    let existingCase = await Case.findOne({ 
-      category: category, 
-      status: 'active' 
-    });
+    let existingCase;
 
-    if (!existingCase) {
-      existingCase = await Case.create({
-        title: `${category.replace(/_/g, ' ')} case`,
-        category: category,
-        description: description,
-        location: location,
-        createdBy: req.user.id,
+    // Step 1 — Find or identify the case
+    if (caseId) {
+      // If caseId is provided, use it directly
+      existingCase = await Case.findById(caseId);
+    } else if (category) {
+      // Otherwise, find existing case for this category or create one
+      existingCase = await Case.findOne({ 
+        category: category, 
+        status: 'active' 
       });
+
+      if (!existingCase) {
+        // Safety check for category before using .replace()
+        const caseTitle = category ? `${category.replace(/_/g, ' ')} case` : 'New Incident Case';
+        
+        existingCase = await Case.create({
+          title: caseTitle,
+          category: category,
+          description: description,
+          location: location,
+          createdBy: req.user.id,
+        });
+      }
+    } else {
+      return res.status(400).json({ success: false, message: 'Either caseId or category is required' });
     }
 
-    console.log('✅ Case found/created:', existingCase._id);
-// Get uploaded file URLs from Cloudinary
-const evidenceFiles = req.files ? req.files.map(file => file.path) : [];
+    if (!existingCase) {
+      return res.status(404).json({ success: false, message: 'Case not found' });
+    }
 
-const complaint = await Complaint.create({
-  description: description,
-  category: category,
-  incidentDate: incidentDate,
-  location: location,
-  isAnonymous: isAnonymous || false,
-  user: req.user.id,
-  caseId: existingCase._id,
-  evidenceFiles: evidenceFiles,
-});
+    console.log('✅ Case identified:', existingCase._id);
+
+    // Get uploaded file URLs from Cloudinary
+    const evidenceFiles = req.files ? req.files.map(file => file.path) : [];
+
+    const complaint = await Complaint.create({
+      description: description,
+      category: category || existingCase.category, // Use existing case category if missing
+      incidentDate: incidentDate,
+      location: location || existingCase.location,
+      isAnonymous: isAnonymous === 'true' || isAnonymous === true, // Handle FormData string boolean
+      user: req.user.id,
+      caseId: existingCase._id,
+      evidenceFiles: evidenceFiles,
+    });
+
     console.log('✅ Complaint created:', complaint._id);
-    console.log('✅ Linked to case:', complaint.caseId);
 
     // Step 3 — Increment complaint count
-    existingCase.complaintCount += 1;
+    existingCase.complaintCount = (existingCase.complaintCount || 0) + 1;
     await existingCase.save();
 
     console.log('✅ Complaint count updated:', existingCase.complaintCount);
@@ -55,7 +72,7 @@ const complaint = await Complaint.create({
 
     res.status(201).json({
       success: true,
-      message: 'Complaint submitted successfully',
+      message: 'Experience added successfully',
       data: {
         complaint: complaint,
         caseId: existingCase._id,
@@ -77,7 +94,7 @@ const getComplaints = async (req, res) => {
     
     console.log('🔍 Looking for complaints with caseId:', caseId);
     
-    const complaints = await Complaint.find({ caseId: caseId });
+    const complaints = await Complaint.find({ caseId: caseId }).populate('user', 'fullName name username');
     
     console.log('✅ Complaints found:', complaints.length);
 
