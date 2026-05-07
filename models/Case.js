@@ -12,6 +12,7 @@ const caseSchema = new mongoose.Schema({
   location: { type: String },
   threshold: { type: Number, default: 10 },
   complaintCount: { type: Number, default: 0 },
+  isAnonymous: { type: Boolean, default: false },
   status: {
     type: String,
     enum: ['active', 'threshold_reached', 'document_generated', 'resolved'],

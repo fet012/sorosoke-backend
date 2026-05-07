@@ -4,13 +4,14 @@ const Complaint = require('../models/Complaint');
 // CREATE CASE
 const createCase = async (req, res) => {
   try {
-    const { title, category, description, location } = req.body;
+    const { title, category, description, location, isAnonymous } = req.body;
 
     const newCase = await Case.create({
       title,
       category,
       description,
       location,
+      isAnonymous: isAnonymous === 'true' || isAnonymous === true,
       createdBy: req.user.id,
     });
 
