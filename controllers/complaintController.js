@@ -67,9 +67,6 @@ const submitComplaint = async (req, res) => {
 
     console.log('✅ Complaint count updated:', existingCase.complaintCount);
 
-    // Step 4 — Check threshold
-    await checkAndTriggerThreshold(existingCase);
-
     res.status(201).json({
       success: true,
       message: 'Experience added successfully',
@@ -77,7 +74,6 @@ const submitComplaint = async (req, res) => {
         complaint: complaint,
         caseId: existingCase._id,
         complaintCount: existingCase.complaintCount,
-        threshold: existingCase.threshold,
       }
     });
 
@@ -106,28 +102,6 @@ const getComplaints = async (req, res) => {
 
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
-  }
-};
-
-// THRESHOLD DETECTION
-const checkAndTriggerThreshold = async (caseDoc) => {
-  const thresholds = {
-    sexual_harassment: 5,
-    police_brutality: 5,
-    lastma_extortion: 30,
-    landlord_dispute: 10,
-    corruption: 50,
-    workplace_abuse: 10,
-    other: 10,
-  };
-
-  const threshold = thresholds[caseDoc.category] || 10;
-
-  if (caseDoc.complaintCount >= threshold && !caseDoc.documentGenerated) {
-    console.log(`⚡ Threshold reached for case ${caseDoc._id}`);
-    await Case.findByIdAndUpdate(caseDoc._id, {
-      status: 'threshold_reached',
-    });
   }
 };
 
