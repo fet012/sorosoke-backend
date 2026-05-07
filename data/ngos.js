@@ -45,6 +45,33 @@ const ngos = [
     email: "info@mirabelcentre.org",
     description: "Medical and psychosocial support for rape and sexual assault survivors.",
   },
+  {
+    id: 18,
+    name: "WRAPA",
+    fullName: "Women's Rights Advancement and Protection Alternative",
+    category: ["sexual_harassment", "workplace_abuse"],
+    phone: "+234-803-300-4347",
+    email: "wrapa@wrapa.org.ng",
+    description: "Advances women's rights through free legal aid, counselling, and advocacy across Nigeria.",
+  },
+  {
+    id: 19,
+    name: "CIRDDOC",
+    fullName: "Civil Resource Development and Documentation Centre",
+    category: ["sexual_harassment", "workplace_abuse"],
+    phone: "+234-803-321-9789",
+    email: "info@cirddoc.org",
+    description: "Documents and advocates against gender-based violence and women's rights violations in Nigeria.",
+  },
+  {
+    id: 20,
+    name: "Stand to End Rape",
+    fullName: "Stand to End Rape Initiative",
+    category: ["sexual_harassment"],
+    phone: "+234-808-692-4555",
+    email: "info@standtoendrape.org",
+    description: "Provides safe reporting channels, counselling, and advocacy for rape survivors in Nigeria.",
+  },
 
   // POLICE BRUTALITY
   {
@@ -83,6 +110,33 @@ const ngos = [
     email: "info@eienigeria.org",
     description: "Civic advocacy against abuse of power and security force misconduct.",
   },
+  {
+    id: 21,
+    name: "Human Rights Watch Nigeria",
+    fullName: "Human Rights Watch Nigeria",
+    category: ["police_brutality"],
+    phone: "+234-802-555-0197",
+    email: "hrwpress@hrw.org",
+    description: "Investigates and exposes police brutality, extrajudicial killings, and human rights abuses by Nigerian security forces.",
+  },
+  {
+    id: 22,
+    name: "NOPRIN",
+    fullName: "Network on Police Reform in Nigeria",
+    category: ["police_brutality"],
+    phone: "+234-803-456-7810",
+    email: "info@noprin.org",
+    description: "Coalition of civil society organisations working to reform the Nigeria Police Force and end abuse.",
+  },
+  {
+    id: 23,
+    name: "PRAWA",
+    fullName: "Prisoners Rehabilitation and Welfare Action",
+    category: ["police_brutality"],
+    phone: "+234-803-300-5929",
+    email: "info@prawaonline.org",
+    description: "Provides legal aid and advocates for fair treatment of detainees and those wrongfully held by security agencies.",
+  },
 
   // CORRUPTION
   {
@@ -102,6 +156,24 @@ const ngos = [
     phone: "+234-801-234-5678",
     email: "info@yourbudgit.com",
     description: "Tracks government spending and exposes corruption in public funds.",
+  },
+  {
+    id: 24,
+    name: "CDD West Africa",
+    fullName: "Centre for Democracy and Development West Africa",
+    category: ["corruption"],
+    phone: "+234-803-300-0678",
+    email: "cdd@cddwestafrica.org",
+    description: "Research and advocacy organisation promoting democratic governance and fighting corruption in West Africa.",
+  },
+  {
+    id: 25,
+    name: "HEDA Resource Centre",
+    fullName: "Human and Environmental Development Agenda Resource Centre",
+    category: ["corruption"],
+    phone: "+234-802-300-0278",
+    email: "heda@hedaonline.org",
+    description: "Anti-corruption advocacy group that tracks public procurement fraud and promotes government accountability in Nigeria.",
   },
 
   // WORKPLACE ABUSE
@@ -123,6 +195,24 @@ const ngos = [
     email: "info@fiwon.org",
     description: "Protects the rights of workers especially in the informal sector.",
   },
+  {
+    id: 26,
+    name: "NLC",
+    fullName: "Nigeria Labour Congress",
+    category: ["workplace_abuse"],
+    phone: "+234-802-300-1234",
+    email: "info@nlcng.org",
+    description: "Nigeria's largest workers' union federation; handles collective labour disputes, unfair dismissals, and employer violations.",
+  },
+  {
+    id: 27,
+    name: "LSITF",
+    fullName: "Lagos State Industrial Training Fund",
+    category: ["workplace_abuse"],
+    phone: "+234-700-225-5000",
+    email: "info@itf.gov.ng",
+    description: "Federal body overseeing worker welfare and employer compliance with labour standards in Nigeria.",
+  },
 
   // LASTMA EXTORTION
   {
@@ -143,6 +233,15 @@ const ngos = [
     email: "info@serap.org",
     description: "Takes legal action against extortion and abuse by government officials.",
   },
+  {
+    id: 28,
+    name: "PCC Lagos",
+    fullName: "Public Complaints Commission — Lagos State Office",
+    category: ["lastma_extortion", "other"],
+    phone: "+234-813-129-7487",
+    email: "complaint@pcc.gov.ng",
+    description: "Federal ombudsman office in Lagos for reporting administrative injustice and extortion by government agencies.",
+  },
 
   // LANDLORD DISPUTE
   {
@@ -162,6 +261,71 @@ const ngos = [
     phone: "+234-802-987-6543",
     email: "info@nbalagos.org",
     description: "Connects tenants with qualified lawyers for property and housing disputes.",
+  },
+  {
+    id: 29,
+    name: "Lagos Rent Tribunal",
+    fullName: "Lagos State Rent Control and Recovery of Residential Premises Tribunal",
+    category: ["landlord_dispute"],
+    phone: "+234-802-300-9900",
+    email: "info@lagosstategov.ng",
+    description: "Official Lagos State tribunal for resolving rent disputes and unlawful evictions between landlords and tenants.",
+  },
+
+  // GOVERNMENT AGENCIES (FEDERAL)
+  {
+    id: 30,
+    name: "EFCC",
+    fullName: "Economic and Financial Crimes Commission",
+    category: ["corruption"],
+    phone: "+234-706-997-1317",
+    email: "efccilagos@efccnigeria.org",
+    description: "Federal agency that investigates and prosecutes financial crimes, fraud, bribery, and money laundering. Lagos office at 15 Awolowo Road, Ikoyi.",
+  },
+  {
+    id: 31,
+    name: "ICPC",
+    fullName: "Independent Corrupt Practices and Other Related Offences Commission",
+    category: ["corruption", "workplace_abuse"],
+    phone: "+234-803-123-0280",
+    email: "info@icpc.gov.ng",
+    description: "Federal commission that investigates and prosecutes corruption in public institutions and government agencies.",
+  },
+  {
+    id: 32,
+    name: "PCC",
+    fullName: "Public Complaints Commission (Federal Ombudsman)",
+    category: ["other", "lastma_extortion", "workplace_abuse"],
+    phone: "+234-807-010-0580",
+    email: "complaint@pcc.gov.ng",
+    description: "Nigeria's federal ombudsman body. Receives and investigates citizen complaints against any government ministry, department, agency, or private organisation.",
+  },
+  {
+    id: 33,
+    name: "NHRC",
+    fullName: "National Human Rights Commission",
+    category: ["police_brutality", "workplace_abuse", "sexual_harassment", "other"],
+    phone: "+234-800-236-3726",
+    email: "info@nhrc.gov.ng",
+    description: "Nigeria's principal government human rights body. Investigates violations by state and non-state actors and provides redress for victims.",
+  },
+  {
+    id: 34,
+    name: "NPS",
+    fullName: "Nigeria Police Service Commission",
+    category: ["police_brutality"],
+    phone: "+234-803-300-0001",
+    email: "info@psc.gov.ng",
+    description: "Government body responsible for police appointments and discipline. Accepts complaints against officers for misconduct, brutality, or extortion.",
+  },
+  {
+    id: 35,
+    name: "FCCPC",
+    fullName: "Federal Competition and Consumer Protection Commission",
+    category: ["workplace_abuse", "other"],
+    phone: "+234-800-225-5272",
+    email: "info@fccpc.gov.ng",
+    description: "Federal body that protects consumers and workers from unfair trade practices, exploitation, and business misconduct.",
   },
 ];
 
