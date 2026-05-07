@@ -88,21 +88,23 @@ const getCaseById = async (req, res) => {
 // GET USER'S OWN CASES (Cases they created OR cases they have complaints in)
 const getMyCases = async (req, res) => {
   try {
-    // Step 1: Find cases where the user is the creator
-    const casesCreatedByUser = await Case.find({ createdBy: req.user.id });
+    const userId = req.user.id;
     
-    // Step 2: Find all complaints by the user and get their caseIds
-    const userComplaints = await Complaint.find({ user: req.user.id }).select('caseId');
-    const caseIdsFromComplaints = userComplaints.map(c => c.caseId);
+    // Find all complaints by the user and get their caseIds
+    const userComplaints = await Complaint.find({ user: userId }).select('caseId');
+    const caseIdsFromComplaints = userComplaints
+      .filter(c => c.caseId)
+      .map(c => c.caseId.toString());
     
-    // Step 3: Combine and find all unique cases
-    const allUserCaseIds = [
-      ...casesCreatedByUser.map(c => c._id),
-      ...caseIdsFromComplaints
-    ];
+    // Find cases where the user is the creator
+    const casesCreatedByUser = await Case.find({ createdBy: userId }).select('_id');
+    const caseIdsFromCreated = casesCreatedByUser.map(c => c._id.toString());
+    
+    // Combine and deduplicate
+    const uniqueCaseIds = [...new Set([...caseIdsFromCreated, ...caseIdsFromComplaints])];
     
     const cases = await Case.find({ 
-      _id: { $in: allUserCaseIds } 
+      _id: { $in: uniqueCaseIds } 
     }).sort({ createdAt: -1 });
 
     res.status(200).json({
@@ -111,6 +113,7 @@ const getMyCases = async (req, res) => {
       data: cases
     });
   } catch (error) {
+    console.error("Error in getMyCases:", error);
     res.status(500).json({ success: false, message: error.message });
   }
 };
